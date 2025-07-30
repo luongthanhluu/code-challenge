@@ -3,32 +3,32 @@
 1. ReactJS with TypeScript Issues
    - Type Safety Problems:
      any type usage: getPriority = (blockchain: any)
-     Missing interface properties: WalletBalance thiếu blockchain property
-     Inconsistent types: FormattedWalletBalance vs WalletBalance trong mapping
-     Undefined BoxProps: Interface không được import/define
+     Missing interface properties: WalletBalance missing blockchain property
+     Inconsistent types: FormattedWalletBalance vs WalletBalance in mapping
+     Undefined BoxProps: Interface not imported/defined
    - Type Errors:
-     lhsPriority undefined: Variable không tồn tại trong scope
-     Missing return type: Sort function thiếu return cho equal case
-     Type mismatch: sortedBalances.map với FormattedWalletBalance
+     lhsPriority undefined: Variable does not exist in scope
+     Missing return type: Sort function missing return for equal case
+     Type mismatch: sortedBalances.map with FormattedWalletBalance
 2. Functional Components Issues
    - Component Structure:
-     Missing imports: Không import React, useMemo, hooks
-     Undefined components: WalletRow, classes không được define
-     Missing props destructuring: children được destructure nhưng không dùng
-     Poor component organization: Logic phức tạp trong component
+     Missing imports: Not importing React, useMemo, hooks
+     Undefined components: WalletRow, classes not defined
+     Missing props destructuring: children destructured but not used
+     Poor component organization: Complex logic in component
    - Component Logic:
-     Inline complex logic: Filter và sort logic trong component
+     Inline complex logic: Filter and sort logic in component
      Magic numbers: Hard-coded priority values
-     Poor separation of concerns: Business logic mixed với UI logic
+     Poor separation of concerns: Business logic mixed with UI logic
 3. React Hooks Issues
    - useMemo Problems:
-     Unnecessary dependencies: prices trong dependency array nhưng không dùng
-     Complex logic in useMemo: Filter và sort logic quá phức tạp
-     Missing memoization: formattedBalances không được memoize
+     Unnecessary dependencies: prices in dependency array but not used
+     Complex logic in useMemo: Filter and sort logic too complex
+     Missing memoization: formattedBalances not memoized
    - Hook Usage:
-     Undefined hooks: useWalletBalances(), usePrices() không được define
-     Missing error handling: Không handle loading states
-     Poor performance: Re-computation không cần thiết
+     Undefined hooks: useWalletBalances(), usePrices() not defined
+     Missing error handling: Not handling loading states
+     Poor performance: Unnecessary re-computation
 
 ### Step 1: Fix TypeScript Issues
 
@@ -42,7 +42,7 @@
 # step fix
 
 1.1 Fix WalletBalance Interface: add missing property
-1.2 extends FormattedWalletBalance from WalletBalance just need add formatted propety
+1.2 extends FormattedWalletBalance from WalletBalance just need add formatted property
 1.3 Define Props Interface added className property
 1.4 Fix getPriority Function Type: Define Props Interface added some properties may we use in the future
 1.5: WalletBalance Interface: add missing blockchain property
@@ -99,7 +99,7 @@
 # step fix
 
 3.1 Fix useMemo Dependencies, remove prices
-3.2 Add Memoization cho formattedBalances
+3.2 Add Memoization for formattedBalances
 3.3 Fix Rows Mapping: Memoize with dependencies
 3.4 replace index by unique key(balance.currency)
 3.5 add prices and sortedBalances in dependency array
@@ -144,7 +144,7 @@ const WalletRow: React.FC<{
   return (
     <div className={classes.row}>
       <div className={classes.walletInfo}>
-        <div className={classes.currencyÌno}>
+        <div className={classes.currencyInfo}>
           <span className={classes.currency}>{currency}</span>
           <span className={classes.blockchain}>({blockchain})</span>
         </div>
@@ -220,5 +220,3 @@ const WalletRow: React.FC<{
   font-weight: 600;
 }
 ```
-
-4.4 remove index in line sortedBalances.map(.... we dont use it anymore
